@@ -1,14 +1,13 @@
 from typing import List
 from notes import CN, NO_NOTES
 from chords import Chord
-from functools import reduce
 from chords import Spelling
 from notes import AbstractNote
 
 class AbstractChord:
     """Stores the embodiment of a chord relative to a root note
     """
-    def __init__(self, root_note: AbstractNote, chord: Chord, note_enum: AbstractNote) -> None:
+    def __init__(self, root_note: AbstractNote, chord: Chord, note_enum) -> None:
         self.root_note = root_note
         self.chord = chord
         self.note_enum = note_enum
@@ -18,7 +17,7 @@ class AbstractChord:
 
         return: List of Notes
         """
-        return [self.note_enum((self.root_note.value + x) % NO_NOTES) for x in self.chord.notes]
+        return [self.note_enum((self.root_note.value + x.value) % NO_NOTES) for x in self.chord.notes]
     
 
     def spell(self) -> List:
@@ -48,7 +47,7 @@ class AbstractChord:
     def __str__(self) -> str:
         """Get the string representation of the chord
 
-        Example: (for A Major) "A Major chord with notes A, C#, E"
+        Example: (for A Major) "A Major chord with notes A C# E"
         """
         spelling = self.spell()
         return spelling[0] + " " + self.chord.name + " Chord with notes " + " ".join(spelling)

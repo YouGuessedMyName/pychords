@@ -31,26 +31,10 @@ class TestChord(unittest.TestCase):
 class TestTheoreticalChord(unittest.TestCase):
 
         def test_notes(self):
-            Cmajor = TheoreticalChord(TN.i, MAJOR)
-            self.assertEqual(Cmajor.notes(), [TN.i, TN.iii, TN.v])
-            Gminor = TheoreticalChord(TN.v, MINOR)
-            self.assertEqual(Gminor.notes(), [TN.v, TN.viS, TN.ii])
-    
-        # def test_spelling(self):
-        #     Gminor = ConcreteChord(CN.G, MINOR)
-        #     self.assertEqual(Gminor.spell(), ["G", "Bb", "D"])
-        #     Amajor = ConcreteChord(CN.A, MAJOR)
-        #     self.assertEqual(Amajor.spell(), ["A", "C#", "E"])
-        
-        # def test_spelling_exceptions(self):
-        #     GbMajor = ConcreteChord(CN.FS, MAJOR)
-        #     self.assertEqual(GbMajor.spell(), ["Gb", "Bb", "Db"])
-        
-        # def test_str(self):
-        #     Gminor = ConcreteChord(CN.G, MINOR)
-        #     self.assertEqual(str(Gminor), "G Minor Chord with notes G Bb D")
-        #     Amajor = ConcreteChord(CN.A, MAJOR)
-        #     self.assertEqual(str(Amajor), "A Major Chord with notes A C# E")
+            Cmajor = TheoreticalChord(TN._1, MAJOR)
+            self.assertEqual(Cmajor.notes(), [TN._1, TN._3, TN._5])
+            Gminor = TheoreticalChord(TN._5, MINOR)
+            self.assertEqual(Gminor.notes(), [TN._5, TN._7b, TN._2])
 
 
 if __name__ == "__main__":

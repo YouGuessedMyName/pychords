@@ -3,7 +3,6 @@ from enum import Enum
 NO_NOTES = 12
 
 class AbstractNote(Enum):
-    
     def spell_sharp(self):
         """Spell this note the sharp way"""
         pass
@@ -11,55 +10,73 @@ class AbstractNote(Enum):
     def spell_flat(self):
         """Spell this note the flat way"""
         pass
+    
+    def sharp_root(self):
+        """Get the sharp root"""
+        pass
+    
+    def flat_root(self):
+        """Get the flat root"""
+        pass
 
 class TN(AbstractNote):
-    i = 0
-    iS = 1
-    ii = 2
-    iiS = 3
-    iii = 4
-    iv = 5
-    ivS = 6
-    v = 7
-    vS = 8
-    vi = 9
-    viS = 10
-    vii = 11
+    _1 = 0
+    _2b = 1
+    _2 = 2
+    _3b = 3
+    _3 = 4
+    _4 = 5
+    _5b = 6
+    _5 = 7
+    _6b = 8
+    _6 = 9
+    _7b = 10
+    _7 = 11
 
     def spell_sharp(self):
         return SHARP_THEORETICAL_NOTE_NAMES[self]
     
     def spell_flat(self):
-        return FLAT_THEORETICAL_NOTE_NAMES[self]  
+        return FLAT_THEORETICAL_NOTE_NAMES[self]
+    
+    def sharp_root(self):
+        if self in [TN._2b, TN._3b, TN._5b, TN._6b, TN._7b]:
+            return TN((self.value-1) % NO_NOTES)
+        return self
+    
+    def flat_root(self):
+        if self in [TN._2b, TN._3b, TN._5b, TN._6b, TN._7b]:
+            return TN((self.value+1) % NO_NOTES)
+        return self
 
 SHARP_THEORETICAL_NOTE_NAMES = {
-    TN.i:"i",
-    TN.iS:"i#",
-    TN.ii:"ii",
-    TN.iiS:"ii#",
-    TN.iii:"iii",
-    TN.iv:"iv",
-    TN.ivS:"iv#",
-    TN.v:"v",
-    TN.vS:"v#",
-    TN.vi:"vi",
-    TN.viS:"vi#",
-    TN.vii:"vii"
+    TN._1:"i",
+    TN._2b:"i#",
+    TN._2:"ii",
+    TN._3b:"ii#",
+    TN._3:"iii",
+    TN._4:"iv",
+    TN._5b:"iv#",
+    TN._5:"v",
+    TN._6b:"v#",
+    TN._6:"vi",
+    TN._7b:"vi#",
+    TN._7:"vii"
 }
 
 FLAT_THEORETICAL_NOTE_NAMES = {
-    TN.i:"i",
-    TN.iS:"iib",
-    TN.ii:"ii",
-    TN.iiS:"iiib",
-    TN.iii:"iii",
-    TN.iv:"iv",
-    TN.ivS:"vb",
-    TN.v:"v",
-    TN.vS:"vib",
-    TN.vi:"vi",
-    TN.viS:"viib",
-    TN.vii:"vii"
+    TN._1:"i",
+    TN._2b:"iib",
+    TN._2:"ii",
+    TN._3b:"iiib",
+    TN._3:"iii",
+    TN._4:"iv",
+    TN._5b:"vb",
+    TN._5:"v",
+    TN._6b:"vib",
+    TN._6:"vi",
+    TN._7b:"viib",
+    TN._7:"vii"
 }
 
 class CN(AbstractNote):
@@ -81,6 +98,16 @@ class CN(AbstractNote):
     
     def spell_flat(self):
         return FLAT_CONCRETE_NOTE_NAMES[self]
+    
+    def sharp_root(self):
+        if self in [CN.AS, CN.CS, CN.DS, CN.FS, CN.GS]:
+            return CN((self.value-1) % NO_NOTES)
+        return self
+    
+    def flat_root(self):
+        if self in [CN.AS, CN.CS, CN.DS, CN.FS, CN.GS]:
+            return CN((self.value+1) % NO_NOTES)
+        return self
 
 SHARP_CONCRETE_NOTE_NAMES = {
     CN.A:"A",
