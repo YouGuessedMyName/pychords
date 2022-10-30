@@ -51,3 +51,13 @@ class AbstractChord:
         """
         spelling = self.spell()
         return spelling[0] + " " + self.chord.name + " Chord with notes " + " ".join(spelling)
+    
+    def short_representation(self) -> str:
+        """Get a representation of the chord that consists of only one letter
+
+        Returns:
+            str: character
+        """
+        return self.spell()[0] + self.chord.short
+
+        

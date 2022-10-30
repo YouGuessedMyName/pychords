@@ -1,10 +1,16 @@
+from concrete_chord import ConcreteChord
 from notes import CN
-from modes import *
+import modes
+import chords
 from concrete_scale import ConcreteScale
+from theoretical_chord import TheoreticalChord
 from theoretical_scale import TheoreticalScale
 
-s = ConcreteScale(CN.A, CHROMATIC)
-print(s.spell())
+old_scale = ConcreteScale(CN.A, modes.MAJOR)
+os_chord = ConcreteChord(CN.B, chords.MINOR)
 
-t = TheoreticalScale(AUGMENTED)
-print(t.spell())
+new_scale = ConcreteScale(CN.D, modes.NATURAL_MINOR)
+tc = old_scale.theoretical_chord_of(os_chord)
+print(tc)
+ns_chord = new_scale.concrete_chord_of(tc)
+print(ns_chord)

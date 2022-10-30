@@ -19,6 +19,10 @@ class AbstractNote(Enum):
         """Get the flat root"""
         pass
 
+    @staticmethod
+    def parse(self, s: str):
+        """Parse from string"""
+
 class TN(AbstractNote):
     _1 = 0
     _2b = 1
@@ -48,6 +52,10 @@ class TN(AbstractNote):
         if self in [TN._2b, TN._3b, TN._5b, TN._6b, TN._7b]:
             return TN((self.value+1) % NO_NOTES)
         return self
+    
+    @staticmethod
+    def parse(s: str):
+        return REVERSED_THEORETICAL_NOTE_NAMES[s]
 
 SHARP_THEORETICAL_NOTE_NAMES = {
     TN._1:"i",
@@ -108,6 +116,10 @@ class CN(AbstractNote):
         if self in [CN.AS, CN.CS, CN.DS, CN.FS, CN.GS]:
             return CN((self.value+1) % NO_NOTES)
         return self
+    
+    @staticmethod
+    def parse(s: str):
+        return REVERSED_CONCRETE_NOTE_NAMES[s]
 
 SHARP_CONCRETE_NOTE_NAMES = {
     CN.A:"A",
@@ -138,3 +150,10 @@ FLAT_CONCRETE_NOTE_NAMES = {
     CN.G:"G",
     CN.GS:"Ab"
 }
+
+def reverse_dict(d):
+    # https://stackoverflow.com/questions/43436595/python-reverse-dictionary
+    return {v: k for k, v in d.items()}
+
+REVERSED_THEORETICAL_NOTE_NAMES = reverse_dict(SHARP_THEORETICAL_NOTE_NAMES) | reverse_dict(FLAT_THEORETICAL_NOTE_NAMES)
+REVERSED_CONCRETE_NOTE_NAMES = reverse_dict(SHARP_CONCRETE_NOTE_NAMES) | reverse_dict(FLAT_CONCRETE_NOTE_NAMES)

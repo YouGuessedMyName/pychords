@@ -3,6 +3,8 @@ from theoretical_chord import TheoreticalChord
 from notes import CN, TN
 from chords import *
 import unittest
+from transpose import *
+import modes
 
 class TestChord(unittest.TestCase):
 
@@ -30,12 +32,23 @@ class TestChord(unittest.TestCase):
 
 class TestTheoreticalChord(unittest.TestCase):
 
-        def test_notes(self):
-            Cmajor = TheoreticalChord(TN._1, MAJOR)
-            self.assertEqual(Cmajor.notes(), [TN._1, TN._3, TN._5])
-            Gminor = TheoreticalChord(TN._5, MINOR)
-            self.assertEqual(Gminor.notes(), [TN._5, TN._7b, TN._2])
+    def test_notes(self):
+        Cmajor = TheoreticalChord(TN._1, MAJOR)
+        self.assertEqual(Cmajor.notes(), [TN._1, TN._3, TN._5])
+        Gminor = TheoreticalChord(TN._5, MINOR)
+        self.assertEqual(Gminor.notes(), [TN._5, TN._7b, TN._2])
 
+class TestNote(unittest.TestCase):
+
+    def test_parse(self):
+        Bb = CN.parse("Bb")
+        self.assertEqual(Bb, CN.AS)
+
+class TestTransposition(unittest.TestCase):
+
+    def test_transpose(self):
+        tcc = transpose_from_to_key(ConcreteChord(CN.A, chords.MINOR), CN.C, CN.F)
+        self.assertEqual(str(tcc), str(ConcreteChord(CN.D, chords.MINOR)))
 
 if __name__ == "__main__":
     unittest.main()

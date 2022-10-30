@@ -1,8 +1,10 @@
-from modes import *
-from notes import NO_NOTES, AbstractNote
+from modes import Mode
+from notes import NO_NOTES, TN, CN, AbstractNote
 from typing import List
 from collections import Counter
 from chords import FS_GB_spelling, Spelling
+from concrete_chord import ConcreteChord
+from theoretical_chord import TheoreticalChord
 
 class AbstractScale:
     def __init__(self, root_note: AbstractNote, mode: Mode, note_enum) -> None:
@@ -48,6 +50,14 @@ class AbstractScale:
     def __str__(self) -> str:
         spelling = self.spell()
         return spelling[0] + " " + self.scale.name + " Scale with notes " + " ".join(spelling)
+    
+    def chords(self) -> List:
+        """Return all chords of the scale
+
+        Returns:
+            List: _description_
+        """
+        
 
         
 
