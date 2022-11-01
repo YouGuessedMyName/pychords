@@ -13,6 +13,3 @@ class TheoreticalScale(AbstractScale):
             str: character
         """
         return self.chord.short
-
-def parse() -> TheoreticalScale:
-    pass

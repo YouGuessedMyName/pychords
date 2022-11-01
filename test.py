@@ -1,4 +1,4 @@
-from concrete_chord import ConcreteChord
+from concrete_chord import ConcreteChord, from_notes
 from theoretical_chord import TheoreticalChord
 from notes import CN, TN
 from chords import *
@@ -6,7 +6,7 @@ import unittest
 from transpose import *
 import modes
 
-class TestChord(unittest.TestCase):
+class TestConcreteChord(unittest.TestCase):
 
     def test_notes(self):
         Cmajor = ConcreteChord(CN.C, MAJOR)
@@ -49,6 +49,22 @@ class TestTransposition(unittest.TestCase):
     def test_transpose(self):
         tcc = transpose_from_to_key(ConcreteChord(CN.A, chords.MINOR), CN.C, CN.F)
         self.assertEqual(str(tcc), str(ConcreteChord(CN.D, chords.MINOR)))
+
+class TestFindChord(unittest.TestCase):
+
+    def test_find_chord(self):
+        m_notes = chords.MAJOR.notes
+        m2 = chords.find_chord(m_notes)
+        self.assertEqual(m2.name, "Major")
+    
+    def test_from_notes(self):
+        self.assertTrue(CN.C == CN.C)
+        Cmajor = ConcreteChord(CN.C, MAJOR)
+        notes = Cmajor.notes()
+        self.assertEqual(notes, [CN.C, CN.E, CN.G])
+        Cmajor2 = from_notes(Cmajor.root_note, notes)
+        self.assertEqual(str(Cmajor), str(Cmajor2))
+
 
 if __name__ == "__main__":
     unittest.main()

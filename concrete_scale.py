@@ -23,6 +23,3 @@ class ConcreteScale(AbstractScale):
     def concrete_chord_of(self, tc: TheoreticalChord) -> ConcreteChord:
         cc_root = CN((self.root_note.value - tc.root_note.value) % NO_NOTES)
         return ConcreteChord(cc_root, tc.chord)
-
-def parse() -> ConcreteScale:
-    pass

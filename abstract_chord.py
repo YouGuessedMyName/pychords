@@ -1,6 +1,6 @@
 from typing import List
-from notes import CN, NO_NOTES
-from chords import Chord
+from notes import CN, NO_NOTES, TN
+from chords import Chord, find_chord
 from chords import Spelling
 from notes import AbstractNote
 
@@ -19,7 +19,6 @@ class AbstractChord:
         """
         return [self.note_enum((self.root_note.value + x.value) % NO_NOTES) for x in self.chord.notes]
     
-
     def spell(self) -> List:
         """Spell the chord, i.e. enumerate the notes
 
@@ -60,4 +59,23 @@ class AbstractChord:
         """
         return self.spell()[0] + self.chord.short
 
-        
+
+# TODO Make this function sort the order of notes or something
+# or make some functionality that adds inversions to the chords_list automatically.
+
+def abstract_chord_from_notes(root_note: CN, notes: List) -> AbstractChord:
+    """Get the root note and the chord from a list of notes
+
+    Args:
+        root_note (CN): _description_
+        notes (List): _description_
+
+    Returns:
+        AbstractChord: _description_
+    """
+    normalized_notes = list(map(lambda x: TN((x.value - root_note.value) % NO_NOTES), notes))
+    try:
+        chord = find_chord(normalized_notes)
+    except KeyError:
+        chord = Chord("Unknown", normalized_notes, [Spelling.FLAT for x in normalized_notes], {}, "u")
+    return (root_note, chord)

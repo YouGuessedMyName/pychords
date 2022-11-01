@@ -121,6 +121,7 @@ class CN(AbstractNote):
     def parse(s: str):
         return REVERSED_CONCRETE_NOTE_NAMES[s]
 
+
 SHARP_CONCRETE_NOTE_NAMES = {
     CN.A:"A",
     CN.AS:"A#",

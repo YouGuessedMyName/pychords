@@ -57,12 +57,3 @@ class AbstractScale:
         Returns:
             List: _description_
         """
-        
-
-        
-
-
-
-
-
-    
