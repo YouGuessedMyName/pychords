@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 from notes import CN, NO_NOTES, TN
 from chords import Chord, find_chord
 from chords import Spelling
@@ -59,11 +59,7 @@ class AbstractChord:
         """
         return self.spell()[0] + self.chord.short
 
-
-# TODO Make this function sort the order of notes or something
-# or make some functionality that adds inversions to the chords_list automatically.
-
-def abstract_chord_from_notes(root_note: CN, notes: List) -> AbstractChord:
+def abstract_chord_from_notes(root_note: AbstractNote, notes: List) -> Tuple[AbstractNote, Chord]:
     """Get the root note and the chord from a list of notes
 
     Args:
@@ -71,8 +67,9 @@ def abstract_chord_from_notes(root_note: CN, notes: List) -> AbstractChord:
         notes (List): _description_
 
     Returns:
-        AbstractChord: _description_
+        Tuple(AbstractNote, Chord): the parameters needed to create the chord.
     """
+    # Subtract the root from everything
     normalized_notes = list(map(lambda x: TN((x.value - root_note.value) % NO_NOTES), notes))
     try:
         chord = find_chord(normalized_notes)

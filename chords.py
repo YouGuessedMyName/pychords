@@ -23,7 +23,11 @@ def add(chord: Chord) -> Chord:
     Returns:
         Chord: chord
     """
+    # Add default
     chords_list.append(chord)
+    # Add inversions
+    for ()
+    chords_list.append(chords_list.pop(0))
     return chord
 
 def find_chord(notes: List) -> Chord:
@@ -38,25 +42,6 @@ def find_chord(notes: List) -> Chord:
     notes_list = list(map(lambda x: x.notes, chords_list))
     i = notes_list.index(notes)
     return chords_list[i]
-
-# TODO Make this function shuffle 
-
-def from_notes(root_note: CN, notes: List) -> AbstractChord:
-    """Get the root note and the chord from a list of notes
-
-    Args:
-        root_note (CN): _description_
-        notes (List): _description_
-
-    Returns:
-        AbstractChord: _description_
-    """
-    normalized_notes = list(map(lambda x: TN((x.value - root_note.value) % NO_NOTES), notes))
-    try:
-        chord = find_chord(normalized_notes)
-    except KeyError:
-        chord = Chord("Unknown", normalized_notes, [Spelling.FLAT for x in normalized_notes], {}, "u")
-    return (root_note, chord)
 
 MAJOR = add(Chord("Major", [TN._1, TN._3, TN._5], [Spelling.FLAT, Spelling.SHARP, Spelling.FLAT], {CN.FS.value: FS_GB_spelling}, ""))
 MINOR = add(Chord("Minor", [TN._1, TN._3b, TN._5], [Spelling.SHARP, Spelling.FLAT, Spelling.SHARP], {CN.DS.value: FS_GB_spelling}, "m"))
