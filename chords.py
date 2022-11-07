@@ -26,7 +26,6 @@ def add(chord: Chord) -> Chord:
     # Add default
     chords_list.append(chord)
     # Add inversions
-    for ()
     chords_list.append(chords_list.pop(0))
     return chord
 
