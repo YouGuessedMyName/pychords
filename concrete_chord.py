@@ -8,5 +8,14 @@ class ConcreteChord(AbstractChord):
         super().__init__(root_note, chord, CN)
 
 def from_notes(root_note: CN, notes: List) -> ConcreteChord:
+    """Convert a list of notes into a ConcreteChord
+
+    Args:
+        root_note (CN): _description_
+        notes (List): _description_
+
+    Returns:
+        ConcreteChord: _description_
+    """
     (root_note, chord) = abstract_chord_from_notes(root_note, notes)
     return ConcreteChord(root_note, chord)

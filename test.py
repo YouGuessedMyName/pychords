@@ -57,13 +57,22 @@ class TestFindChord(unittest.TestCase):
         m2 = chords.find_chord(m_notes)
         self.assertEqual(m2.name, "Major")
     
+    def test_find_chord_inversion(self):
+        m_notes = [TN._3, TN._5, TN._1]
+        m2 = chords.find_chord(m_notes)
+        self.assertEqual(m2.name, "Major")
+    
     def test_from_notes(self):
-        self.assertTrue(CN.C == CN.C)
         Cmajor = ConcreteChord(CN.C, MAJOR)
         notes = Cmajor.notes()
         self.assertEqual(notes, [CN.C, CN.E, CN.G])
         Cmajor2 = from_notes(Cmajor.root_note, notes)
         self.assertEqual(str(Cmajor), str(Cmajor2))
+    
+    def test_find_inversions(self):
+        notes = [CN.E, CN.G, CN.C]
+        Cmajor2 = from_notes(CN.C, notes)
+        self.assertEqual("C Major Chord with notes E G C", str(Cmajor2))
 
 
 if __name__ == "__main__":

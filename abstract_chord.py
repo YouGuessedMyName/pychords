@@ -17,12 +17,13 @@ class AbstractChord:
 
         return: List of Notes
         """
+        # For each note, get the sum of it and the root note
         return [self.note_enum((self.root_note.value + x.value) % NO_NOTES) for x in self.chord.notes]
     
     def spell(self) -> List:
         """Spell the chord, i.e. enumerate the notes
 
-        Example: (for A Major) ["A, C#, E"]
+        Example: (for A Major) ["A", "C#", "E"]
         """
         res = []
 
@@ -42,14 +43,17 @@ class AbstractChord:
                     res.append(note.spell_sharp())
         return res
     
-
+    def spell_note(self, note: AbstractNote) -> str:
+        index = self.notes().index(note)
+        return self.spell()[index]
+        
     def __str__(self) -> str:
         """Get the string representation of the chord
 
         Example: (for A Major) "A Major chord with notes A C# E"
         """
         spelling = self.spell()
-        return spelling[0] + " " + self.chord.name + " Chord with notes " + " ".join(spelling)
+        return self.spell_note(self.root_note) + " " + self.chord.name + " Chord with notes " + " ".join(spelling)
     
     def short_representation(self) -> str:
         """Get a representation of the chord that consists of only one letter
@@ -71,8 +75,5 @@ def abstract_chord_from_notes(root_note: AbstractNote, notes: List) -> Tuple[Abs
     """
     # Subtract the root from everything
     normalized_notes = list(map(lambda x: TN((x.value - root_note.value) % NO_NOTES), notes))
-    try:
-        chord = find_chord(normalized_notes)
-    except KeyError:
-        chord = Chord("Unknown", normalized_notes, [Spelling.FLAT for x in normalized_notes], {}, "u")
+    chord = find_chord(normalized_notes)
     return (root_note, chord)

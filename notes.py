@@ -3,6 +3,8 @@ from enum import Enum
 NO_NOTES = 12
 
 class AbstractNote(Enum):
+    """Abstract representation of notes, can be used in both the theoretical case and the concrete case.
+    """
     def spell_sharp(self):
         """Spell this note the sharp way"""
         pass
@@ -24,6 +26,8 @@ class AbstractNote(Enum):
         """Parse from string"""
 
 class TN(AbstractNote):
+    """Theoretical note
+    """
     _1 = 0
     _2b = 1
     _2 = 2
@@ -88,6 +92,8 @@ FLAT_THEORETICAL_NOTE_NAMES = {
 }
 
 class CN(AbstractNote):
+    """Concrete note
+    """
     A = 0
     AS = 1
     B = 2
