@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.cfg
+pychords/__init__.py
+pychords/chord_types.py
+pychords/chords.py
+pychords/modes.py
+pychords/notes.py
+pychords/scales.py
+pychords/transpose.py
+pychords.egg-info/PKG-INFO
+pychords.egg-info/SOURCES.txt
+pychords.egg-info/dependency_links.txt
+pychords.egg-info/top_level.txt

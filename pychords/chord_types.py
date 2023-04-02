@@ -1,8 +1,10 @@
 from enum import Enum
 from collections import namedtuple
-from notes import CN, TN
-from typing import List
 from itertools import permutations
+from typing import List
+
+from pychords.notes import CN, TN
+
 # Chords are defined as a list that contains all notes
 
 class Spelling(Enum):
@@ -13,12 +15,12 @@ class Spelling(Enum):
 FS_GB_spelling = Spelling.FLAT
 
 # Special type 
-Chord = namedtuple("Chord", ["name", "notes", "spelling", "exceptions", "short"])
+ChordType = namedtuple("Chord", ["name", "notes", "spelling", "exceptions", "short"])
 
 # This list keeps track of all known chords (e.g. major, minor)
-chords_list = []
+chord_types_list = []
 
-def add(chord: Chord, add_inversions=True) -> Chord:
+def add(chord: ChordType, add_inversions=True) -> ChordType:
     """Add a new chord.
 
     Args:
@@ -28,20 +30,19 @@ def add(chord: Chord, add_inversions=True) -> Chord:
         Chord: chord
     """
     
-    
     # Add inversions
     if add_inversions:
         notes = chord.notes.copy()
         for perm, spelling in zip(permutations(notes), permutations(chord.spelling)):
-            inv_chord = Chord(chord.name, perm, spelling, chord.exceptions, chord.short)
-            chords_list.append(inv_chord)
+            inv_chord = ChordType(chord.name, perm, spelling, chord.exceptions, chord.short)
+            chord_types_list.append(inv_chord)
     else:
         # Add canon inversion only
-        chords_list.append(tuple(chord))
+        chord_types_list.append(tuple(chord))
     
     return chord
 
-def find_chord(notes: List) -> Chord:
+def find_chord(notes: List) -> ChordType:
     """Find a chord using its notes
 
     Args:
@@ -51,12 +52,12 @@ def find_chord(notes: List) -> Chord:
         Chord: chord
     """
     # Find the index of these notes and then return
-    notes_list = list(map(lambda x: tuple(x.notes), chords_list))
+    notes_list = list(map(lambda x: tuple(x.notes), chord_types_list))
     try:
         i = notes_list.index(tuple(notes))
-        return chords_list[i]
+        return chord_types_list[i]
     except ValueError:
-        return Chord("Unknown", notes, [Spelling.FLAT for x in notes], {}, "u")
+        return ChordType("Unknown", notes, [Spelling.FLAT for x in notes], {}, "u")
 
-MAJOR = add(Chord("Major", [TN._1, TN._3, TN._5], [Spelling.FLAT, Spelling.SHARP, Spelling.FLAT], {CN.FS.value: FS_GB_spelling}, ""))
-MINOR = add(Chord("Minor", [TN._1, TN._3b, TN._5], [Spelling.SHARP, Spelling.FLAT, Spelling.SHARP], {CN.DS.value: FS_GB_spelling}, "m"))
+MAJOR = add(ChordType("Major", [TN._1, TN._3, TN._5], [Spelling.FLAT, Spelling.SHARP, Spelling.FLAT], {CN.FS.value: FS_GB_spelling}, ""))
+MINOR = add(ChordType("Minor", [TN._1, TN._3b, TN._5], [Spelling.SHARP, Spelling.FLAT, Spelling.SHARP], {CN.DS.value: FS_GB_spelling}, "m"))

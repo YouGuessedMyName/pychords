@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: pychords
+Version: 0.0.1
+Summary: Harmony modelling using python
+Home-page: https://github.com/YouGuessedMyName/pychords
+Author: YouGuessedMyName
+Author-email: Please reach out using github
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE

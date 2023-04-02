@@ -1,5 +1,6 @@
-from notes import TN
 from collections import namedtuple
+
+from pychords.notes import TN
 
 Mode = namedtuple("Scale", ["name", "notes"])
 

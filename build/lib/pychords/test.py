@@ -1,7 +1,10 @@
+from concrete_chord import ConcreteChord, from_notes
+from theoretical_chord import TheoreticalChord
+from notes import CN, TN
+from chords import *
 import unittest
-from pychords.chords import *
-from pychords.chord_types import *
-from pychords.transpose import *
+from transpose import *
+import modes
 
 class TestConcreteChord(unittest.TestCase):
 
@@ -44,31 +47,31 @@ class TestNote(unittest.TestCase):
 class TestTransposition(unittest.TestCase):
 
     def test_transpose(self):
-        tcc = transpose_from_to_key(ConcreteChord(CN.A, MINOR), CN.C, CN.F)
-        self.assertEqual(str(tcc), str(ConcreteChord(CN.D, MINOR)))
+        tcc = transpose_from_to_key(ConcreteChord(CN.A, chords.MINOR), CN.C, CN.F)
+        self.assertEqual(str(tcc), str(ConcreteChord(CN.D, chords.MINOR)))
 
 class TestFindChord(unittest.TestCase):
 
     def test_find_chord(self):
-        m_notes = MAJOR.notes
-        m2 = find_chord(m_notes)
+        m_notes = chords.MAJOR.notes
+        m2 = chords.find_chord(m_notes)
         self.assertEqual(m2.name, "Major")
     
     def test_find_chord_inversion(self):
         m_notes = [TN._3, TN._5, TN._1]
-        m2 = find_chord(m_notes)
+        m2 = chords.find_chord(m_notes)
         self.assertEqual(m2.name, "Major")
     
     def test_from_notes(self):
         Cmajor = ConcreteChord(CN.C, MAJOR)
-        notes = [CN.C, CN.E, CN.G]
+        notes = Cmajor.notes()
         self.assertEqual(notes, [CN.C, CN.E, CN.G])
-        Cmajor2 = concrete_chord_from_notes(CN.C, notes)
+        Cmajor2 = from_notes(Cmajor.root_note, notes)
         self.assertEqual(str(Cmajor), str(Cmajor2))
     
     def test_find_inversions(self):
         notes = [CN.E, CN.G, CN.C]
-        Cmajor2 = concrete_chord_from_notes(CN.C, notes)
+        Cmajor2 = from_notes(CN.C, notes)
         self.assertEqual("C Major Chord with notes E G C", str(Cmajor2))
 
 
