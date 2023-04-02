@@ -59,5 +59,5 @@ def find_chord(notes: List) -> ChordType:
     except ValueError:
         return ChordType("Unknown", notes, [Spelling.FLAT for x in notes], {}, "u")
 
-MAJOR = add(ChordType("Major", [TN._1, TN._3, TN._5], [Spelling.FLAT, Spelling.SHARP, Spelling.FLAT], {CN.FS.value: FS_GB_spelling}, ""))
-MINOR = add(ChordType("Minor", [TN._1, TN._3b, TN._5], [Spelling.SHARP, Spelling.FLAT, Spelling.SHARP], {CN.DS.value: FS_GB_spelling}, "m"))
+MAJOR_CHORD = add(ChordType("Major", [TN._1, TN._3, TN._5], [Spelling.FLAT, Spelling.SHARP, Spelling.FLAT], {CN.FS.value: FS_GB_spelling}, ""))
+MINOR_CHORD = add(ChordType("Minor", [TN._1, TN._3b, TN._5], [Spelling.SHARP, Spelling.FLAT, Spelling.SHARP], {CN.DS.value: FS_GB_spelling}, "m"))

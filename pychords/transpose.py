@@ -10,6 +10,6 @@ def transpose_from_to_scale(chord: ConcreteChord, source_scale: ConcreteScale, t
     return cc
 
 def transpose_from_to_key(chord: ConcreteChord, source_key: CN, target_key: CN) -> ConcreteChord:
-    source_scale = ConcreteScale(source_key, modes.MAJOR)
-    target_scale = ConcreteScale(target_key, ct.MAJOR)
+    source_scale = ConcreteScale(source_key, modes.MAJOR_MODE)
+    target_scale = ConcreteScale(target_key, ct.MAJOR_CHORD)
     return transpose_from_to_scale(chord, source_scale, target_scale)
