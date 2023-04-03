@@ -42,7 +42,7 @@ which tells it to use the constant FS_GB_spelling to determine how to spell chor
 
 If you want to add a new chord type, you can do this using the chord_types.add method.
 
-#### Concrete and theoretical chords
+### Concrete and theoretical chords
 
 Concrete chords and theoretical Chords have a lot in common because they both inherit from a class Abstract Chord.
 Here is an overview of the main methods that they share, more information can be found in the docstrings.
