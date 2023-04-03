@@ -1,13 +1,12 @@
 from typing import List
 from collections import Counter
 
-from pychords.modes import Mode
 from pychords.notes import NO_NOTES, TN, CN, AbstractNote
 from pychords.chord_types import FS_GB_spelling, Spelling
 from pychords.chords import *
 
 class AbstractScale:
-    def __init__(self, root_note: AbstractNote, mode: Mode, note_enum) -> None:
+    def __init__(self, root_note: AbstractNote, mode: List, note_enum) -> None:
         """Create a scale from a mode and root note
 
         Args:
@@ -50,16 +49,9 @@ class AbstractScale:
     def __str__(self) -> str:
         spelling = self.spell()
         return spelling[0] + " " + self.scale.name + " Scale with notes " + " ".join(spelling)
-    
-    def chords(self) -> List:
-        """Return all chords of the scale
-
-        Returns:
-            List: _description_
-        """
 
 class ConcreteScale(AbstractScale):
-    def __init__(self, root_note: CN, mode: Mode) -> None:
+    def __init__(self, root_note: CN, mode: List) -> None:
         super().__init__(root_note, mode, CN)
     
     def short_representation(self) -> str:
@@ -79,7 +71,7 @@ class ConcreteScale(AbstractScale):
         return ConcreteChord(cc_root, tc.chord)
 
 class TheoreticalScale(AbstractScale):
-    def __init__(self, mode: Mode) -> None:
+    def __init__(self, mode: List) -> None:
         super().__init__(TN._1, mode, TN)
     
     def short_representation(self) -> str:

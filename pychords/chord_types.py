@@ -15,13 +15,13 @@ class Spelling(Enum):
 FS_GB_spelling = Spelling.FLAT
 
 # Special type 
-ChordType = namedtuple("Chord", ["name", "notes", "spelling", "exceptions", "short"])
+ChordType = namedtuple("ChordType", ["name", "notes", "spelling", "exceptions", "short"])
 
 # This list keeps track of all known chords (e.g. major, minor)
 chord_types_list = []
 
 def add(chord: ChordType, add_inversions=True) -> ChordType:
-    """Add a new chord.
+    """Add a new chord type.
 
     Args:
         chord (Chord)
