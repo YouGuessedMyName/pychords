@@ -3,16 +3,14 @@
 Pychords is a package that can be used to model music in python, in particular notes and scales.
 This project was started back when musicpy did not exist yet.
 
-# Documentation
-
 In order to understand how to use pychords, a basic understanding of music theory is required.
 
-## Data structures
+# Data structures
 
 Pychords currently supports three main kinds of data structures, notes, chords, and scales/modes.
 (Scroll down for a table with an overview of the types)
 
-### Notes
+## Notes
 
 A note is represented by an integer enum from 0 to 11. Note that the sharp variety of black notes are used, so A# also represents Bb.
 There are too kinds of notes: Concrete and Theoretical.
@@ -23,9 +21,9 @@ A theoretical note is a note that is relevant to music theory notation, for exam
 So if the key is C minor, *theoretical* 1 corresponds to *concrete* C and 3b *theoretical* corresponds to *concrete* Eb.
 These are stored in an enum called **TN**
 
-### Chords
+## Chords
 
-#### Chord types
+### Chord types
 
 A Chord type is a type of chord, for example major.
 A ChordType is a namedtuple (from collections) that consists the following data:
@@ -65,13 +63,13 @@ Get a nice string rperesenntation of the chord
 ##### short_representation()
 Get a short string reperesentation of the chord
 
-#### Concrete chord
+### Concrete chord
 
 A concrete chord is a chord that you can actually play on an instrument, for example Ab Major.
 It stores a root note (in this case Ab) and a chord type (in this case Major).
 
 
-### A table for reference
+## A table for reference
 
 |  | **Chords** | **Scales** | **Notes** |
 |--|------------|-----------|---------------|
