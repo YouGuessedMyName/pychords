@@ -83,7 +83,7 @@ Get a short string reperesentation of the chord
 
 A Mode is a list of notes that represents a mode. Examples are the Major scale and the Natural Minor scale.
 
-Just like in the case of chords, there is a concrete and a theoretical variety.
+For scales, just like in the case of chords, there is a concrete and a theoretical variety.
 
 #### Concrete scale
 
