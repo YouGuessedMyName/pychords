@@ -28,21 +28,17 @@ These are stored in an enum called **TN**
 A Chord type is a type of chord, for example major.
 A ChordType is a namedtuple (from collections) that consists the following data:
 
-name: name of the chord type (for example "Major")
-
-notes: all the *theoretical* notes in the chord type, order does not matter (for example [TN._1, TN._3, TN._5])
-
-spelling: a list that contains how each note should be spelled if black keys are used. 
+* name: name of the chord type (for example "Major")
+* notes: all the *theoretical* notes in the chord type, order does not matter (for example [TN._1, TN._3, TN._5])
+* spelling: a list that contains how each note should be spelled if black keys are used. 
 For example if you want to spell an A major chord, you would want it to be spelled A, C#, E and not A Db E.
 To mitigate this, for major chords we use [Spelling.FLAT, Spelling.SHARP, Spelling.FLAT].
 When in doubt, just use flat for your whole chord type.
-
-spelling_exceptions: This is mainly used to determine how chords should be spelled in Gb major/ F# major or Eb minor / D# minor.
+* spelling_exceptions: This is mainly used to determine how chords should be spelled in Gb major/ F# major or Eb minor / D# minor.
 If this would not be there, then Gb major would be spelled Gb A# Db. I recommend using the value
 { CN.FS.value: FS_GB_spelling } 
 which tells it to use the constant FS_GB_spelling to determine how to spell chords in this key.
-
-short: The short notation of this chord type. For major this is nothing, for minor this is "m" in order to get "Abm" for example.
+* short: The short notation of this chord type. For major this is nothing, for minor this is "m" in order to get "Abm" for example.
 
 If you want to add a new chord type, you can do this using the chord_types.add method.
 
