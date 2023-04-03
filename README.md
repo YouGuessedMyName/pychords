@@ -47,16 +47,16 @@ If you want to add a new chord type, you can do this using the chord_types.add m
 Concrete chords and theoretical Chords have a lot in common because they both inherit from a class Abstract Chord.
 Here is an overview of the main methods that they share, more information can be found in the docstrings.
 
-##### notes()
+* notes()
 Get all the notes in the Chord.
-##### spell()
+* spell()
 Get a list with string representations of each note.
-##### spell_note()
+* spell_note()
 Get the spelling of this particular note in this chord.
 This is mainly useful because it depends on the context of the chord whether a black note should be spelled flat or sharp.
-##### __str()__
+* __str()__
 Get a nice string rperesenntation of the chord
-##### short_representation()
+* short_representation()
 Get a short string reperesentation of the chord
 
 ### Concrete chord
