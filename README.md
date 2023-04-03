@@ -129,6 +129,6 @@ For example if my input is (D minor chord, CN.C, CN.G) then the output is A mino
 
 |  | **Chords** | **Scales** | **Notes** |
 |--|------------|-----------|---------------|
-| Concrete | ConcreteChord | ConcreteScale | ConcreteNote |
-| Theoretical | TheoreticalChord | TheoreticalScale | TheoreticalNote |
+| Concrete | ConcreteChord | ConcreteScale | ConcreteNote (CN) |
+| Theoretical | TheoreticalChord | TheoreticalScale | TheoreticalNote (TN) |
 | Type | ChordType | Mode | int |
