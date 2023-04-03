@@ -44,11 +44,11 @@ class AbstractScale:
     def notes(self) -> List:
         """Return all concrete notes of the scale
         """
-        return [self.note_enum((self.root_note.value + x.value) % NO_NOTES) for x in self.mode]
+        return [self.note_enum((self.root_note.value + x.value) % NO_NOTES) for x in self.mode.notes]
 
     def __str__(self) -> str:
         spelling = self.spell()
-        return spelling[0] + " " + self.scale.name + " Scale with notes " + " ".join(spelling)
+        return spelling[0] + " " + self.mode.name + " Scale with notes " + " ".join(spelling)
 
 class ConcreteScale(AbstractScale):
     def __init__(self, root_note: CN, mode: List) -> None:
@@ -60,14 +60,14 @@ class ConcreteScale(AbstractScale):
         Returns:
             str: character
         """
-        return self.spell()[0] + self.chord.short
+        return self.spell()[0] + " " + self.mode.name
     
     def theoretical_chord_of(self, cc: ConcreteChord) -> TheoreticalChord:
-        tc_root = TN((self.root_note.value + cc.root_note.value) % NO_NOTES)
+        tc_root = TN((cc.root_note.value - self.root_note.value) % NO_NOTES)
         return TheoreticalChord(tc_root, cc.chord)
 
     def concrete_chord_of(self, tc: TheoreticalChord) -> ConcreteChord:
-        cc_root = CN((self.root_note.value - tc.root_note.value) % NO_NOTES)
+        cc_root = CN((self.root_note.value + tc.root_note.value) % NO_NOTES)
         return ConcreteChord(cc_root, tc.chord)
 
 class TheoreticalScale(AbstractScale):

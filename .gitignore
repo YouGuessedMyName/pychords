@@ -3,3 +3,7 @@ __pycache__
 build
 dist
 pychord.egg-info
+pychords.egg-info/dependency_links.txt
+pychords.egg-info/PKG-INFO
+pychords.egg-info/SOURCES.txt
+pychords.egg-info/top_level.txt
